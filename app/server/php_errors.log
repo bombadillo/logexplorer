@@ -1,0 +1,7 @@
+[11-Dec-2014 15:33:30 Europe/London] PHP Parse error:  syntax error, unexpected '$aFileNames' (T_VARIABLE) in F:\Dev\LogExplorer\app\server\getLogFiles.php on line 11
+[11-Dec-2014 15:35:40 Europe/London] PHP Notice:  Undefined variable: dir in F:\Dev\LogExplorer\app\server\classes\FileGetter.php on line 17
+[11-Dec-2014 15:35:40 Europe/London] PHP Warning:  scandir(): Directory name cannot be empty in F:\Dev\LogExplorer\app\server\classes\FileGetter.php on line 17
+[11-Dec-2014 15:35:43 Europe/London] PHP Notice:  Undefined variable: dir in F:\Dev\LogExplorer\app\server\classes\FileGetter.php on line 17
+[11-Dec-2014 15:35:43 Europe/London] PHP Warning:  scandir(): Directory name cannot be empty in F:\Dev\LogExplorer\app\server\classes\FileGetter.php on line 17
+[11-Dec-2014 15:36:28 Europe/London] PHP Parse error:  syntax error, unexpected '.', expecting variable (T_VARIABLE) or '$' in F:\Dev\LogExplorer\app\server\classes\FileGetter.php on line 8
+[11-Dec-2014 15:38:17 Europe/London] PHP Parse error:  syntax error, unexpected '.', expecting variable (T_VARIABLE) or '$' in F:\Dev\LogExplorer\app\server\classes\FileGetter.php on line 8

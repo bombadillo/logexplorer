@@ -1,0 +1,91 @@
+<div class="container-fluid log-container">
+    <div class="row">
+        <div class="col-xs-4 col-md-2 col-md-offset-2">   
+            <button class="btn btn-info changeData ghost" ng-click="home.changeLogData()">Change Log Data</button>
+        </div>        
+        <div class="col-xs-12 col-md-4 text-center">
+            <h2>{{home.title}}</h2>  
+        </div>
+        <div class="col-xs-12 col-md-2 text-center page-size">
+            <label for="pageSize">Log items per page</label>
+            <input id="pageSize" class="form-control" type="text" ng-model="home.pageSize"> 
+        </div>        
+    </div>
+    
+    <div class="row input-data">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <textarea id="data" cols="30" rows="10" class="form-control" placeholder="Enter your log data"></textarea>
+        </div>
+        <div class="col-xs-12 col-md-2">
+            <button class="btn btn-success" ng-click="home.splitData(home)">Update</button>
+        </div>
+    </div>
+    
+    <div class="row hidden-xs pageInfo">
+        <div class="col-xs-12 col-md-3 col-md-offset-2">
+            <button class="btn btn-success" ng-click="home.changeLogFilter(home, 'ALL')">ALL</button>
+            <button class="btn btn-info" ng-click="home.changeLogFilter(home, 'INFO')">INFO</button>
+            <button class="btn btn-danger" ng-click="home.changeLogFilter(home, 'ERROR')">ERROR</button>
+            <button class="btn btn-warning" ng-click="home.changeLogFilter(home, 'DEBUG')">DEBUG</button>
+        </div>
+        <div class="col-xs-12 col-md-2 text-center">
+            <div class="label label-info">{{home.currentPage+1}}/{{home.numberOfPages()}}</div>
+        </div>
+        <div class="hidden-xs col-md-4">            
+        </div>
+    </div>
+    
+    <div class="row error" ng-show="home.errors">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 alert alert-danger">
+            {{home.errorMessage}}
+        </div>
+    </div>
+    
+    <div class="row error" ng-show="(home.logItems | filter:home.filterLog).length == 0">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 alert alert-info">
+            No log items exist for the current filter.
+        </div>
+    </div>
+    
+    <div class="row log-items">
+        <div class="col-md-2 hidden-xs hidden-sm">
+            <button class="btn btn-default btn-block text-left affix changePage prev" ng-disabled="home.currentPage == 0" ng-click="home.onPrevClick(home)">
+                Previous
+            </button>
+        </div>
+        <div class="col-xs-12 col-md-8">
+            <ul class="list-group" ng-repeat="item in home.logItems | startFrom:home.currentPage*home.pageSize | limitTo:home.pageSize | filter:home.filterLog">
+                <li class="list-group-item log-item">
+                    <span class="label label-default date">{{item.date}}</span> 
+                    <span class="label label-{{home.itemTypeLabels[item.type]}}">{{item.type}}</span>  
+                    <span class="">{{item.message.message}}</span> 
+                    <pre ng-show="item.message.json" class="code">{{item.message.json}}</pre>
+                </li>            
+            </ul>        
+        </div>
+        <div class="col-md-2 hidden-xs hidden-sm" data-offset-top="60" data-offset-bottom="200">
+            <button class="btn btn-default btn-block text-right affix changePage next" ng-disabled="home.currentPage >= home.logItems.length/home.pageSize - 1" ng-click="home.onNextClick(home)">
+                Next
+            </button> 
+        </div>
+    </div>
+    
+    
+    <div class="row visible-xs-block">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <div class="row">
+                <button class="col-xs-4 btn btn-default text-left" ng-disabled="home.currentPage == 0" ng-click="home.currentPage=home.currentPage-1">
+                    Previous
+                </button>
+                <div class="col-xs-4 text-center">
+                    {{home.currentPage+1}}/{{home.numberOfPages()}}
+                </div>
+                <button class="col-xs-4 btn btn-default text-right" ng-disabled="home.currentPage >= home.logItems.length/home.pageSize - 1" ng-click="home.currentPage=home.currentPage+1">
+                    Next
+                </button> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="scrollToTop start btn btn-default" ng-click="home.scrollToTop()">Back to top</div>
