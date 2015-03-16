@@ -1,3 +1,10 @@
+<div class="loader">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
 <div class="container-fluid log-container">
     <div class="row">
         <div class="col-xs-4 col-md-2 col-md-offset-2">   
@@ -10,9 +17,20 @@
             <label for="pageSize">Log items per page</label>
             <input id="pageSize" class="form-control" type="text" ng-model="home.pageSize"> 
         </div>        
-    </div>
+    </div>       
     
     <div class="row input-data">
+        <div class="col-xs-12 select-log-file">
+            <div class="row">
+                <div class="col-xs-6 col-md-offset-2">
+                    <label>Select log file from list</label>
+                    <select ng-change="home.getLogFileContents()" ng-model="home.currentLogFile">
+                        <option class="form-control" ng-repeat="logFile in home.logFiles">{{logFile}}</option>
+                    </select>
+                </div>
+            </div>            
+        </div>        
+        
         <div class="col-xs-12 col-md-8 col-md-offset-2">
             <textarea id="data" cols="30" rows="10" class="form-control" placeholder="Enter your log data"></textarea>
         </div>
@@ -23,10 +41,12 @@
     
     <div class="row hidden-xs pageInfo">
         <div class="col-xs-12 col-md-3 col-md-offset-2">
-            <button class="btn btn-success" ng-click="home.changeLogFilter(home, 'ALL')">ALL</button>
-            <button class="btn btn-info" ng-click="home.changeLogFilter(home, 'INFO')">INFO</button>
-            <button class="btn btn-danger" ng-click="home.changeLogFilter(home, 'ERROR')">ERROR</button>
-            <button class="btn btn-warning" ng-click="home.changeLogFilter(home, 'DEBUG')">DEBUG</button>
+            <button class="btn btn-success btn-xs" ng-click="home.changeLogFilter(home, 'ALL')">ALL</button>
+            <button class="btn btn-info btn-xs" ng-click="home.changeLogFilter(home, 'INFO')">INFO</button>
+            <button class="btn btn-danger btn-xs" ng-click="home.changeLogFilter(home, 'ERROR')">ERROR</button>
+            <button class="btn btn-warning btn-xs" ng-click="home.changeLogFilter(home, 'DEBUG')">DEBUG</button>
+            <button class="btn btn-default btn-xs" ng-click="home.changeLogFilter(home, 'TRACE')">TRACE</button>
+            <button class="btn btn-primary btn-xs" ng-click="home.changeLogFilter(home, 'WARN')">WARN</button>
         </div>
         <div class="col-xs-12 col-md-2 text-center">
             <div class="label label-info">{{home.currentPage+1}}/{{home.numberOfPages()}}</div>

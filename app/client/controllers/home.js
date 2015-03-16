@@ -11,10 +11,10 @@
     
     app.controller('HomeController', HomeController);
     
-    function HomeController($http) {
+    function HomeController($http, logFiles, logFileContents) {
         var vm = this;
         vm.logIndexes = ['date', 'type', 'message'];
-        vm.itemTypeLabels = {'INFO' : 'info', 'ERROR': 'danger', 'DEBUG': 'warning'};        
+        vm.itemTypeLabels = {'INFO' : 'info', 'ERROR': 'danger', 'DEBUG': 'warning', 'TRACE' : 'default', 'WARN' : 'primary'};        
         vm.title = 'Log Explorer';     
         vm.currentPage = 0;
         vm.pageSize = 40;  
@@ -28,12 +28,36 @@
         vm.filterLog = showAllLogItems();
         vm.changeLogFilter = changeLogFilter;
         vm.scrollToTop = scrollToTop;
+        vm.getLogFileContents = getLogFileContents;
+        
+        logFiles.get().then(onLogFilesComplete, onError);
             
-    }
-    
-    function splitData(vm) {
+        
+        function onLogFilesComplete(data) {
+            vm.logFiles = data;
+        }
+        
+        function onLogFileContentsComplete(data) {           
+            splitData(vm, data);
+                                        
+        }
 
-        var data = $('#data').val();
+        function onError(reason) {
+            vm.error = "Unable to fetch the footfall metrics";
+        }      
+        
+        function getLogFileContents() {
+            $('.loader').fadeIn();               
+            logFileContents.get(vm.currentLogFile).then(onLogFileContentsComplete, onError);
+        }        
+    }   
+			    
+    
+    function splitData(vm, rawData) {
+       
+        $('.loader').fadeIn();
+        
+        var data = rawData || $('#data').val();
         vm.errors = false;
         
         if (data === '') {
@@ -46,8 +70,8 @@
         vm.logItems = [];
         
         for(var i in lines) {
-            var line = lines[i];
-            var splitLine = line.split('] ');
+            
+            var splitLine = getDataFromLine(lines[i]);
             
             logObj = removeUnnecessaryData(splitLine, vm);
             if (logObj.message) vm.logItems.push(logObj);            
@@ -56,7 +80,7 @@
         if (vm.logItems.length < 1) {
             vm.errors = true;
             vm.errorMessage = 'No log data was produced from the input';
-        }
+        }       
                 
         vm.numberOfPages = function() {
             return Math.ceil(vm.logItems.length / vm.pageSize);
@@ -66,8 +90,23 @@
         $('.input-data').slideUp();
         $('.changePage').fadeIn();
         $('.log-items').slideDown();
-        $('.pageInfo').fadeIn();
+        $('.pageInfo').fadeIn();        
+        $('.loader').fadeOut();   
         
+    }
+    
+    function getDataFromLine(line) {
+        
+        var splitLine;
+        
+        if (line.split('|').length === 4) {
+            splitLine = line.split('|');
+            splitLine.splice(2, 1);
+        } else {
+            splitLine = line.split('] '); 
+        }
+        
+        return splitLine;       
     }
     
     function changeLogData() {
@@ -203,6 +242,15 @@
         return { type: 'DEBUG' };
     }
     
+    function showTraceLogItems() {
+        return { type: 'TRACE' };
+    }
+        
+    function showWarnLogItems() {
+        return { type: 'WARN' };
+    }
+    
+    
     function changeLogFilter(vm, type) {
         
         switch (type) {
@@ -215,6 +263,12 @@
             case 'DEBUG': 
                 vm.filterLog = showDebugLogItems();
                 break;
+            case 'TRACE': 
+                vm.filterLog = showTraceLogItems();
+                break;    
+            case 'WARN': 
+                vm.filterLog = showWarnLogItems();
+                break;                                
             default:
                 vm.filterLog = showAllLogItems();
                 break;
@@ -225,6 +279,8 @@
     function scrollToTop() {        
         $("html, body").animate({ scrollTop: 0 }, "slow");
     }
+    
+
     
         
     

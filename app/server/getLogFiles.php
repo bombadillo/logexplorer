@@ -1,13 +1,10 @@
 <?php
 
-define('FILE_DIRECTORY', 'E:\\Apps\\web\\demandware\\logs');
-
 require_once 'classes/FileGetter.php';
+require_once 'include/config.php';
 
 $fileGetter = new FileGetter();
 
-$aFileNames = $fileGetter->getFilesInDirectory(FILE_DIRECTORY);
+$aFiles = $fileGetter->getFilesInDirectory('../../../web/demandware/logs');
 
-if (!$aFileNames) $aFileNames = [];
-
-echo json_encode($aFileNames);
+echo json_encode($aFiles);

@@ -31,9 +31,9 @@
     app.directive("scroll", function ($window) {
         return function(scope, element, attrs) {
             angular.element($window).bind("scroll", function() {
-                 if (this.pageYOffset >= 1000 && !$('.scrollToTop').hasClass('show')) {                     
+                 if (this.pageYOffset >= 500 && !$('.scrollToTop').hasClass('show')) {                     
                      $('.scrollToTop').removeClass('start scrollHide').addClass('show');
-                 } else if (this.pageYOffset < 1000 && !$('.scrollToTop').hasClass('scrollHide')) {
+                 } else if (this.pageYOffset < 500 && !$('.scrollToTop').hasClass('scrollHide')) {
                      $('.scrollToTop').removeClass('show').addClass('scrollHide');               
                                                                  
                  }
