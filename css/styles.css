@@ -76,6 +76,11 @@ pre {
     color: rgba(250, 250, 250, 0.7);
 }
 
+.label-default {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: rgba(250, 250, 250, 0.7);
+}
+
 .list-group .loggerName {
     background-color: rgba(0, 0, 0, 0.2);
     color: rgba(250, 250, 250, 0.7);

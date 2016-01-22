@@ -10,27 +10,28 @@
 
     function parse(splitLine) {
 
-        var pattArray  = /\{|(.*?)\}/g;
-        var pattObject = /\[|(.*?)\]/g;
-        var pattSql    = 'SQL:'
+        var pattObject  = /\{|(.*?)\}/g;
+        var pattArray = /\[|(.*?)\]/g;
+        var pattSql    = 'SQL:';
         var pattXml    = /<\?xml/;
         var containsArray = splitLine.match(pattArray);
         var containsObject = splitLine.match(pattObject);
         var containsSql = splitLine.match(pattSql);
         var containsXml = splitLine.match(pattXml);
         var responseObj = { message: splitLine };
+        var parseData;
 
         if (containsXml) {
-           var json = xmlParser.parse(splitLine);
-           if (json) responseObj = json;
+            parseData = xmlParser.parse(splitLine);
+            if (parseData) responseObj = parseData;
         } else if (containsObject) {
-            var json = jsonParser.parseObject(splitLine);
-            if (json) responseObj = json;
+            parseData = jsonParser.parseObject(splitLine);
+            if (parseData) responseObj = parseData;
         } else if (containsArray) {
-            var json = jsonParser.parseArray(splitLine);
-            if (json) responseObj = json;
+            parseData = jsonParser.parseArray(splitLine);
+            if (parseData) responseObj = parseData;
         } else if(containsSql) {
-            responseObj = { json: splitLine }
+            responseObj = { parseData: splitLine };
         }
 
         return responseObj;
