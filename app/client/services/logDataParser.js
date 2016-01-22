@@ -9,23 +9,24 @@
     };
 
     function parse(splitLine) {
-      var logIndexes = ['date', 'type', 'message'];
       var splitObj = {};
 
-      for (var i in splitLine) {
-        if (i === '0') {
-          var sDate = splitLine[i].replace(/\[/, '');
-          sDate = splitLine[i].substring(0, splitLine[i].length - 7);
-          var date = new Date(sDate);
-          splitObj[logIndexes[i]] = date.toLocaleString();
-        } else if (i === '1') {
-          splitObj[logIndexes[i]] = splitLine[i].replace('[', '');
-        } else {
-          var addJson = messageObjectParser.parse(splitLine[i]);
-          splitObj[logIndexes[i]] = addJson;
-        }
+      splitObj.date = parseDate(splitLine[0].replace(/\[/, ''));
+      splitObj.type = splitLine[1].replace('[', '');
+
+      if (splitLine.length > 3) {
+        splitObj.loggerName = splitLine[2];
+        splitObj.message = messageObjectParser.parse(splitLine[3]);
+      } else {
+          splitObj.message = messageObjectParser.parse(splitLine[2]);
       }
+
       return splitObj;
+    }
+
+    function parseDate(dateString) {
+      dateString = dateString.substring(0, dateString.length - 7);
+      return new Date(dateString).toLocaleString();
     }
   }
 })();

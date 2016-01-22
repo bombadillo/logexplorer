@@ -77,6 +77,7 @@
             <ul class="list-group" ng-repeat="item in home.logItems | startFrom:home.currentPage*home.pageSize | limitTo:home.pageSize | filter:home.filterLog">
                 <li class="list-group-item log-item">
                     <span class="label label-default date">{{item.date}}</span>
+                    <span ng-show="item.loggerName" class="label label-default loggerName">{{item.loggerName}}</span>
                     <span class="label label-{{home.itemTypeLabels[item.type]}}">{{item.type}}</span>
                     <span class="">{{item.message.message}}</span>
                     <pre ng-show="item.message.json" class="code">{{item.message.json}}</pre>

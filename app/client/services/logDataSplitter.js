@@ -33,9 +33,8 @@
 
         var splitLine;
 
-        if (line.split('|').length === 4) {
+        if (line.split('|').length > 2) {
             splitLine = line.split('|');
-            splitLine.splice(2, 1);
         } else {
             splitLine = line.split('] ');
         }

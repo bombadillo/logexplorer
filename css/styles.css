@@ -10,11 +10,11 @@
     body {
         font-weight: 400;
     }
-    
-    .btn { 
+
+    .btn {
         font-weight: 400;
     }
-    
+
     label {
         font-weight: 400;
     }
@@ -28,7 +28,7 @@ root {
     display: block;
 }
 
-.ghost { 
+.ghost {
     display: none;
 }
 
@@ -76,11 +76,16 @@ pre {
     color: rgba(250, 250, 250, 0.7);
 }
 
+.list-group .loggerName {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: rgba(250, 250, 250, 0.7);
+}
+
 .log-container .error {
     padding-top: 30px;
 }
 
-.scrollToTop.start {    
+.scrollToTop.start {
     display: none;
 
 }
@@ -96,35 +101,35 @@ pre {
     -webkit-animation-duration: 0.5s;
     -webkit-animation-name: fadeInFromNone;
     -moz-animation-duration: 0.5s;
-    -moz-animation-name: fadeInFromNone;    
+    -moz-animation-name: fadeInFromNone;
     -o-animation-duration: 0.5s;
-    -o-animation-name: fadeInFromNone;        
+    -o-animation-name: fadeInFromNone;
     animation-duration: 0.5s;
-    animation-name: fadeInFromNone;    
+    animation-name: fadeInFromNone;
 }
 
-.scrollToTop.scrollHide {    
+.scrollToTop.scrollHide {
     /*-webkit-transition: 0.2s linear;*/
-    -webkit-animation: fadeOutFromFull 0.5s ease normal forwards; 
-    -moz-animation: fadeOutFromFull 0.5s ease normal forwards; 
-    -o-animation: fadeOutFromFull 0.5s ease normal forwards; 
-    animation: fadeOutFromFull 0.5s ease normal forwards; 
+    -webkit-animation: fadeOutFromFull 0.5s ease normal forwards;
+    -moz-animation: fadeOutFromFull 0.5s ease normal forwards;
+    -o-animation: fadeOutFromFull 0.5s ease normal forwards;
+    animation: fadeOutFromFull 0.5s ease normal forwards;
 }
 
 @-webkit-keyframes fadeInFromNone {
     0% {
-        display:none; 
+        display:none;
         opacity: 0;
         margin-bottom: -200px;
     }
 
     1% {
-        display: block ; 
+        display: block ;
         opacity: 0;
     }
 
     100% {
-        display: block ; 
+        display: block ;
         opacity: 1;
         margin-bottom: 0px;
     }
@@ -132,39 +137,39 @@ pre {
 
 @-webkit-keyframes fadeOutFromFull {
     0% {
-        display: block ; 
+        display: block ;
         opacity: 1;
         margin-bottom: 0px;
     }
 
     1% {
-        display: block ; 
+        display: block ;
         opacity: 1;
         margin-bottom: 0px;
     }
-    
+
     100% {
-        display:none; 
+        display:none;
         opacity: 0;
         margin-bottom: -200px;
-    }    
+    }
 }
 
 
 @-moz-keyframes fadeInFromNone {
     0% {
-        display:none; 
+        display:none;
         opacity: 0;
         transform: translateY(100px);
     }
 
     1% {
-        display: block; 
+        display: block;
         opacity: 0;
     }
 
     100% {
-        display: block; 
+        display: block;
         opacity: 1;
         transform: translateY(0px);
     }
@@ -172,37 +177,37 @@ pre {
 
 @-moz-keyframes fadeOutFromFull {
     0% {
-        display: block; 
+        display: block;
         opacity: 1;
         transform: translateY(0px);
     }
 
     1% {
-        display: block; 
+        display: block;
         opacity: 1;
     }
-    
+
     100% {
         opacity: 0;
         transform: translateY(100px);
-    }    
+    }
 }
 
 
 @-o-keyframes fadeInFromNone {
     0% {
-        display:none; 
+        display:none;
         opacity: 0;
         margin-bottom: -200px;
     }
 
     1% {
-        display: block ; 
+        display: block ;
         opacity: 0;
     }
 
     100% {
-        display: block ; 
+        display: block ;
         opacity: 1;
         margin-bottom: 0px;
     }
@@ -210,22 +215,22 @@ pre {
 
 @-o-keyframes fadeOutFromFull {
     0% {
-        display: block ; 
+        display: block ;
         opacity: 1;
         margin-bottom: 0px;
     }
 
     1% {
-        display: block ; 
+        display: block ;
         opacity: 1;
         margin-bottom: 0px;
     }
-    
+
     100% {
-        display:none; 
+        display:none;
         opacity: 0;
         margin-bottom: -200px;
-    }    
+    }
 }
 
 .select-log-file {
