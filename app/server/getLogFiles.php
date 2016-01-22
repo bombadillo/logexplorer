@@ -5,6 +5,6 @@ require_once 'include/config.php';
 
 $fileGetter = new FileGetter();
 
-$aFiles = $fileGetter->getFilesInDirectory('../../../web/demandware/logs');
+$aFiles = $fileGetter->getFilesInDirectory(LOG_FILE_DIRECTORY);
 
 echo json_encode($aFiles);
