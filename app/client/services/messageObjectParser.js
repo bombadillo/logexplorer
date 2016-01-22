@@ -3,7 +3,7 @@
 
   module.factory('messageObjectParser', messageObjectParser);
 
-  function messageObjectParser(jsonParser) {
+  function messageObjectParser(jsonParser, xmlParser) {
     return {
       parse: parse
     };
@@ -21,7 +21,8 @@
         var responseObj = { message: splitLine };
 
         if (containsXml) {
-
+           var json = xmlParser.parse(splitLine);
+           if (json) responseObj = json;
         } else if (containsObject) {
             var json = jsonParser.parseObject(splitLine);
             if (json) responseObj = json;
