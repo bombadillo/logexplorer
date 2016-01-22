@@ -1,10 +1,3 @@
-/**
-* Created with DemandWareLogExplorer.
-* User: bombadillo
-* Date: 2014-12-08
-* Time: 04:03 PM
-* To change this template use Tools | Templates.
-*/
 (function() {
 
     var app = angular.module('DemandWareLogExplorer');
