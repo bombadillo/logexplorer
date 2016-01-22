@@ -26,8 +26,11 @@ The following data types/code snippets are currently supported:
 * JSON
 * XML
 * SQL
+* Anonymous code (using `CodeSnippet:` before the code)
 
 If a log message contains one of the data types above it will be parsed and displayed within the message text wrapped with `<pre></pre>` so that data outputs are easily identifiable.
+
+All data types code snippets must be at the end of the log item. Once a matching pattern has been found for on the types/snippets then the rest of the log message is treated as that type/snippet.
 
 e.g.
 
