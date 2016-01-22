@@ -21,10 +21,11 @@ The format of the date can be any format that [JavaScript will accept](https://d
 ### Optional log item columns
 * `LOGGERNAME` is optional. This has been added to enable the logger name from [NLog](https://github.com/NLog/NLog/) to be output.
 
-## Data Parsing
-The following data types are currently supported:
+## Data/Code Parsing
+The following data types/code snippets are currently supported:
 * JSON
 * XML
+* SQL
 
 If a log message contains one of the data types above it will be parsed and displayed within the message text wrapped with `<pre></pre>` so that data outputs are easily identifiable.
 
