@@ -2,6 +2,10 @@
 
 View logs in a pageable easy to read format.
 
+## Optional Requirements
+* Web server *
+* PHP **
+
 ## Log format
 The format of the log should be as follows:
 
@@ -27,3 +31,7 @@ If a log message contains one of the data types above it will be parsed and disp
 e.g.
 
 ![alt text](http://i.imgur.com/X1D4fq1.png "Example of data parsing")
+
+\* You can run it without a web server, however, you would need to change the relative paths within `index.html` to absolute paths.
+
+** Only required if you want to be able to specify a specific log directory which will be used to populate a dropdown list with the files found.
