@@ -19,7 +19,7 @@
       };
 
       if (jsonString !== '') {
-        responseObj.parsedData = JSON.parse(jsonString);
+        responseObj.parsedData = parseData(jsonString);
         return responseObj;
       }
       return false;
@@ -32,10 +32,22 @@
         var responseObj = { message: message };
 
         if (jsonString !== '' && jsonString.trim() !== ']') {
-            responseObj.parsedData = JSON.parse(jsonString);
+            responseObj.parsedData = parseData(jsonString);
             return responseObj;
         }
         return false;
+    }
+
+    function parseData(jsonString) {
+      var response;
+      try {
+         response = JSON.parse(jsonString);
+      }
+      catch (e) {
+         response = e;
+      }
+
+      return response;
     }
   }
 

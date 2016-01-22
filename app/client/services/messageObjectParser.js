@@ -11,7 +11,7 @@
 
     function parse(splitLine) {
 
-        var pattObject  = /\{|(.*?)\}/g;
+        var pattObject  = /\{"|(.*?)\}/g;
         var pattArray = /\[|(.*?)\]/g;
         var pattXml    = /<\?xml/;
         var pattSql    = 'SQL:';
@@ -26,6 +26,8 @@
 
         if (containsXml) {
             parsedData = xmlParser.parse(splitLine);
+        } else if (containsObject && containsArray){
+          parsedData = jsonParser.parseArray(splitLine);
         } else if (containsObject) {
             parsedData = jsonParser.parseObject(splitLine);
         } else if (containsArray) {
