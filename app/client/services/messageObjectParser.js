@@ -3,7 +3,7 @@
 
   module.factory('messageObjectParser', messageObjectParser);
 
-  function messageObjectParser(jsonParser, xmlParser) {
+  function messageObjectParser(jsonParser, xmlParser, sqlParser) {
     return {
       parse: parse
     };
@@ -19,21 +19,19 @@
         var containsSql = splitLine.match(pattSql);
         var containsXml = splitLine.match(pattXml);
         var responseObj = { message: splitLine };
-        var parseData;
+        var parsedData;
 
         if (containsXml) {
-            parseData = xmlParser.parse(splitLine);
-            if (parseData) responseObj = parseData;
+            parsedData = xmlParser.parse(splitLine);
         } else if (containsObject) {
-            parseData = jsonParser.parseObject(splitLine);
-            if (parseData) responseObj = parseData;
+            parsedData = jsonParser.parseObject(splitLine);
         } else if (containsArray) {
-            parseData = jsonParser.parseArray(splitLine);
-            if (parseData) responseObj = parseData;
+            parsedData = jsonParser.parseArray(splitLine);
         } else if(containsSql) {
-            responseObj = { parseData: splitLine };
+            parsedData = sqlParser.parse(splitLine);
         }
 
+        if (parsedData) responseObj = parsedData;
         return responseObj;
     }
   }

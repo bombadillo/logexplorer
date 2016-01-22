@@ -19,7 +19,7 @@
       };
 
       if (jsonString !== '') {
-        responseObj.json = JSON.parse(jsonString);
+        responseObj.parsedData = JSON.parse(jsonString);
         return responseObj;
       }
       return false;
@@ -32,7 +32,7 @@
         var responseObj = { message: message };
 
         if (jsonString !== '' && jsonString.trim() !== ']') {
-            responseObj.json = JSON.parse(jsonString);
+            responseObj.parsedData = JSON.parse(jsonString);
             return responseObj;
         }
         return false;

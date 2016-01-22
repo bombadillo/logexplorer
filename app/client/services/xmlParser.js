@@ -7,7 +7,7 @@
     return {
       parse: parse
     };
-    
+
     function parse(splitLine) {
         var startOfXml = splitLine.indexOf('<?xml');
         var xmlString = splitLine.substr(startOfXml, splitLine.length);
@@ -15,7 +15,7 @@
         var responseObj = { message: message };
 
         if (xmlString !== '' && xmlString.trim() !== ']') {
-            responseObj.json = xmlString;
+            responseObj.parseData = xmlString;
             return responseObj;
         }
         return false;

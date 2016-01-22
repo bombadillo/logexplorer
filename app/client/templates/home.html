@@ -80,7 +80,7 @@
                     <span ng-show="item.loggerName" class="label label-default loggerName">{{item.loggerName}}</span>
                     <span class="label label-{{home.itemTypeLabels[item.type]}}">{{item.type}}</span>
                     <span class="">{{item.message.message}}</span>
-                    <pre ng-show="item.message.json" class="code">{{item.message.parseData}}</pre>
+                    <pre ng-show="item.message.parsedData" class="code">{{item.message.parsedData}}</pre>
                 </li>
             </ul>
         </div>
